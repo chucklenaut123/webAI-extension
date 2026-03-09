@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>WebAI Extension</title>
+  <link rel="stylesheet" href="sidebar.css">
+  <script src="lib/marked.min.js"></script>
+  <link rel="stylesheet" href="lib/katex.min.css">
+  <script src="lib/katex.min.js"></script>
+  <script src="lib/auto-render.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <header class="header">
+      <h1 data-i18n="title">WebAI Extension</h1>
+      <div class="header-actions">
+        <select id="modelSelect" class="model-select">
+          <option value="zhipu">GLM-4.7-Flash</option>
+          <option value="groq">Groq (Llama)</option>
+        </select>
+        <button id="settingsBtn" class="icon-btn" title="Settings">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+          </svg>
+        </button>
+        <button id="closeBtn" class="icon-btn" title="Close">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <line x1="18" y1="6" x2="6" y2="18"></line>
+            <line x1="6" y1="6" x2="18" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <div class="chat-container" id="chatContainer">
+      <div class="welcome-message">
+        <p data-i18n="welcome">Hello! I can help you:</p>
+        <ul>
+          <li data-i18n="feature1">Quickly summarize page content</li>
+          <li data-i18n="feature2">Extract key points</li>
+          <li data-i18n="feature3">Explain content in detail</li>
+          <li data-i18n="feature4">General Q&A conversation</li>
+        </ul>
+        <p data-i18n="hint">Click the buttons below or enter your question directly!</p>
+      </div>
+    </div>
+
+    <div class="input-container">
+      <textarea 
+        id="userInput" 
+        data-i18n-placeholder="inputPlaceholder"
+        placeholder="Enter your question..." 
+        rows="3"
+      ></textarea>
+      <div class="input-actions">
+        <div class="input-options">
+          <label class="checkbox-label">
+            <input type="checkbox" id="usePageContent" checked>
+            <span data-i18n="usePageContent">Use page content</span>
+          </label>
+        </div>
+        <button id="sendBtn" class="send-btn" data-i18n="send">Send</button>
+      </div>
+      <div class="quick-actions">
+        <button class="action-btn" data-action="summarize" data-i18n="summarize">Summarize</button>
+        <button class="action-btn" data-action="extract" data-i18n="extract">Key Points</button>
+        <button class="action-btn" data-action="explain" data-i18n="explain">Explain</button>
+      </div>
+    </div>
+  </div>
+
+  <script src="sidebar.js"></script>
+</body>
+</html>

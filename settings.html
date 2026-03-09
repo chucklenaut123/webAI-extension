@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Settings - WebAI Extension</title>
+  <link rel="stylesheet" href="settings.css">
+</head>
+<body>
+  <div class="settings-container">
+    <header class="settings-header">
+      <h1>Settings</h1>
+    </header>
+    
+    <div class="settings-content">
+      <section class="settings-section">
+        <h2>AI Settings</h2>
+        
+        <div class="setting-item-vertical">
+          <label>System Prompt</label>
+          <p class="setting-hint">Customize the AI's role and behavior. Leave empty to use default.</p>
+          <textarea id="systemPromptInput" rows="6" placeholder="e.g., You are a professional translator who specializes in technical documentation..."></textarea>
+          <button id="resetPromptBtn" class="reset-btn">Reset to Default</button>
+        </div>
+      </section>
+      
+      <section class="settings-section">
+        <h2>About</h2>
+        <div class="about-content">
+          <p><strong>WebAI Extension</strong></p>
+          <p>Version 1.0.0</p>
+          <p>An AI-powered browser extension template for summarization, explanation, and Q&A. Ready to deploy or customize.</p>
+        </div>
+      </section>
+    </div>
+    
+    <div class="settings-footer">
+      <button id="saveBtn" class="save-btn">Save</button>
+    </div>
+  </div>
+  
+  <script src="settings.js"></script>
+</body>
+</html>

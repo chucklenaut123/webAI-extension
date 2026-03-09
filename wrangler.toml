@@ -1,0 +1,36 @@
+# ============================================
+# Cloudflare Worker Configuration
+# ============================================
+# Rename this file or modify as needed for your deployment
+# See: https://developers.cloudflare.com/workers/wrangler/configuration/
+
+name = "webai-extension"
+main = "worker.js"
+compatibility_date = "2024-02-28"
+
+# ============================================
+# Environment Variables (Secrets)
+# ============================================
+# IMPORTANT: Do NOT put API keys here!
+# Use Cloudflare Dashboard or Wrangler CLI to set secrets:
+#
+# Via Dashboard:
+#   1. Go to Workers & Pages > your-worker > Settings > Variables
+#   2. Add environment variables with "Encrypt" option checked
+#
+# Via CLI:
+#   wrangler secret put ZHIPU_API_KEYS
+#   wrangler secret put GROQ_API_KEYS
+#
+# Required Secrets:
+#   - ZHIPU_API_KEYS: Comma-separated Zhipu AI API keys
+#   - GROQ_API_KEYS: Comma-separated Groq API keys
+# ============================================
+
+# Optional: Add your account ID
+# account_id = "your-account-id"
+
+# Optional: Configure routes for custom domain
+# [[routes]]
+# pattern = "api.yourdomain.com/*"
+# zone_name = "yourdomain.com"

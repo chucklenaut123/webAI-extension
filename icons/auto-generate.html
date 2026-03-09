@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>生成扩展图标</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 800px;
+      margin: 50px auto;
+      padding: 20px;
+      text-align: center;
+    }
+    .canvas-container {
+      margin: 20px 0;
+      padding: 20px;
+      background: #f5f5f5;
+      border-radius: 8px;
+    }
+    canvas {
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+    .download-section {
+      margin-top: 30px;
+      padding: 20px;
+      background: #e8f4f8;
+      border-radius: 8px;
+    }
+    .download-btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 12px 24px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      transition: transform 0.2s;
+    }
+    .download-btn:hover {
+      transform: translateY(-2px);
+    }
+    .instructions {
+      text-align: left;
+      background: white;
+      padding: 20px;
+      margin-top: 20px;
+      border-radius: 8px;
+      border-left: 4px solid #667eea;
+    }
+    h1 {
+      color: #667eea;
+    }
+    .step {
+      margin: 15px 0;
+      padding: 10px;
+      background: #f9f9f9;
+      border-radius: 4px;
+    }
+    .step-number {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #667eea;
+      color: white;
+      text-align: center;
+      line-height: 30px;
+      border-radius: 50%;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <h1>🎨 AI Reader Assistant 图标生成器</h1>
+  
+  <div class="canvas-container">
+    <h2>预览效果</h2>
+    <canvas id="canvas" width="128" height="128"></canvas>
+  </div>
+  
+  <div class="download-section">
+    <h2>📥 下载图标文件</h2>
+    <p>点击下方按钮下载三个尺寸的图标：</p>
+    <a href="#" class="download-btn" onclick="downloadIcon(16)">下载 icon16.png</a>
+    <a href="#" class="download-btn" onclick="downloadIcon(48)">下载 icon48.png</a>
+    <a href="#" class="download-btn" onclick="downloadIcon(128)">下载 icon128.png</a>
+  </div>
+  
+  <div class="instructions">
+    <h2>📖 使用说明</h2>
+    
+    <div class="step">
+      <span class="step-number">1</span>
+      点击上方三个下载按钮，分别下载三个图标文件
+    </div>
+    
+    <div class="step">
+      <span class="step-number">2</span>
+      将下载的文件保存到 <code>ai-reader-extension/icons/</code> 文件夹中
+    </div>
+    
+    <div class="step">
+      <span class="step-number">3</span>
+      确保文件名分别为：<code>icon16.png</code>, <code>icon48.png</code>, <code>icon128.png</code>
+    </div>
+    
+    <div class="step">
+      <span class="step-number">4</span>
+      回到浏览器，加载扩展进行测试
+    </div>
+    
+    <h3 style="margin-top: 20px;">💡 提示：</h3>
+    <ul>
+      <li>下载时浏览器可能会提示保存位置，选择保存到 <code>c:\Users\tangy\Desktop\proj\ai-reader-extension\icons\</code></li>
+      <li>如果下载失败，可以右键点击按钮选择"链接另存为"</li>
+      <li>图标会自动生成，无需刷新页面</li>
+    </ul>
+  </div>
+
+  <script>
+    const canvas = document.getElementById('canvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Draw the icon
+    function drawIcon(size) {
+      const scale = size / 128;
+      
+      // Clear canvas
+      ctx.clearRect(0, 0, size, size);
+      
+      // Create gradient background
+      const gradient = ctx.createLinearGradient(0, 0, size, size);
+      gradient.addColorStop(0, '#667eea');
+      gradient.addColorStop(1, '#764ba2');
+      
+      // Draw circle
+      ctx.beginPath();
+      ctx.arc(size/2, size/2, size/2, 0, Math.PI * 2);
+      ctx.fillStyle = gradient;
+      ctx.fill();
+      
+      // Draw book shape
+      const bookX = 35 * scale;
+      const bookY = 45 * scale;
+      const bookWidth = 60 * scale;
+      const bookHeight = 50 * scale;
+      
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.95)';
+      ctx.fillRect(bookX, bookY, bookWidth, bookHeight);
+      
+      // Draw book lines
+      ctx.strokeStyle = '#667eea';
+      ctx.lineWidth = 3 * scale;
+      ctx.lineCap = 'round';
+      ctx.lineJoin = 'round';
+      
+      ctx.beginPath();
+      ctx.moveTo(bookX, bookY);
+      ctx.lineTo(bookX + 20*scale, bookY);
+      ctx.lineTo(bookX + 20*scale, bookY + 20*scale);
+      ctx.lineTo(bookX + 40*scale, bookY + 20*scale);
+      ctx.lineTo(bookX + 40*scale, bookY);
+      ctx.lineTo(bookX + 60*scale, bookY);
+      ctx.stroke();
+      
+      // Add "AI" text
+      ctx.fillStyle = '#667eea';
+      ctx.font = `bold ${24*scale}px Arial`;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText('AI', size/2, size - (15*scale));
+    }
+    
+    // Generate and download icon
+    function downloadIcon(size) {
+      const tempCanvas = document.createElement('canvas');
+      tempCanvas.width = size;
+      tempCanvas.height = size;
+      const tempCtx = tempCanvas.getContext('2d');
+      
+      // Draw scaled icon
+      tempCtx.drawImage(canvas, 0, 0, size, size);
+      
+      // Create download link
+      const link = document.createElement('a');
+      link.download = `icon${size}.png`;
+      link.href = tempCanvas.toDataURL('image/png');
+      link.click();
+    }
+    
+    // Initial draw
+    drawIcon(128);
+    
+    // Auto-generate all icons
+    setTimeout(() => {
+      console.log('💡 提示：你可以手动点击下载按钮，或者使用控制台批量生成');
+    }, 1000);
+  </script>
+</body>
+</html>
