@@ -324,10 +324,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [Marked.js](https://marked.js.org/) for Markdown parsing
 - [KaTeX](https://katex.org/) for math rendering
 
----
-
-<div align="center">
-
-**Made with ❤️ for better reading experience**
-
-</div>
+--->
